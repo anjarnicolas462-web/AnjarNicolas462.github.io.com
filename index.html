@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深圳市毛头科技有限公司 - 创新科技解决方案</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0d1117;
+            --bg-card: #161b22;
+            --accent: #58a6ff;
+            --accent-secondary: #3fb950;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --border: #30363d;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 80px;
+            background: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #238636, #2ea043);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .brand-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .top-nav {
+            display: flex;
+            gap: 35px;
+        }
+
+        .top-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .top-nav a:hover {
+            color: var(--accent);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 80px;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(56, 139, 253, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 139, 253, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%);
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(56, 139, 253, 0.15) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .hero-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 25px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-text h1 span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text > p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .hero-tag {
+            padding: 8px 18px;
+            background: rgba(56, 139, 253, 0.1);
+            border: 1px solid rgba(56, 139, 253, 0.3);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #238636, #2ea043);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2ea043, #3fb950);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .hero-visual {
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .card-3d {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 35px;
+            transform: rotateY(-5deg) rotateX(5deg);
+            transition: transform 0.4s ease;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .card-3d:hover {
+            transform: rotateY(0deg) rotateX(0deg);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(56, 139, 253, 0.2), rgba(63, 185, 80, 0.2));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .card-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .card-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card-stat {
+            text-align: center;
+            padding: 20px 10px;
+            background: rgba(56, 139, 253, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(56, 139, 253, 0.1);
+        }
+
+        .card-stat-num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .card-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .card-image {
+            margin-top: 25px;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .section {
+            padding: 100px 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 35px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            border-color: rgba(56, 139, 253, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, rgba(56, 139, 253, 0.15), rgba(63, 185, 80, 0.15));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 22px;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .about-section {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .about-content > p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .feature-check {
+            width: 24px;
+            height: 24px;
+            background: rgba(63, 185, 80, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-secondary);
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .about-feature span {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .products-section {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 50%, var(--bg-dark) 100%);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-img {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 22px;
+        }
+
+        .product-info h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .product-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .stats-section {
+            padding: 80px;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3.2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        footer {
+            padding: 50px 80px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-brand {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-wrapper {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .services-grid, .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                padding: 15px 25px;
+            }
+            .top-nav {
+                display: none;
+            }
+            .hero {
+                padding: 80px 25px 50px;
+            }
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            .section {
+                padding: 60px 25px;
+            }
+            .services-grid, .products-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-section {
+                padding: 60px 25px;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="top-bar">
+        <div class="brand">
+            <div class="brand-icon">🚀</div>
+            <div class="brand-name">毛头科技</div>
+        </div>
+        <nav class="top-nav">
+            <a href="#services">核心服务</a>
+            <a href="#about">关于我们</a>
+            <a href="#products">产品中心</a>
+            <a href="#contact">联系我们</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-grid"></div>
+        <div class="hero-glow"></div>
+        
+        <div class="hero-wrapper">
+            <div class="hero-text">
+                <h1>深圳市<span>毛头科技</span>有限公司</h1>
+                <p>专注于前沿科技研发与创新解决方案，以技术驱动为核心，致力于为企业和个人提供智能化、高效能的科技产品与服务。</p>
+                
+                <div class="hero-tags">
+                    <span class="hero-tag">💡 科技创新</span>
+                    <span class="hero-tag">🤖 智能研发</span>
+                    <span class="hero-tag">🔧 技术服务</span>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary">
+                        <span>了解更多</span>
+                    </a>
+                    <a href="#contact" class="btn btn-outline">
+                        <span>联系我们</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="card-3d">
+                    <div class="card-header">
+                        <div class="card-icon">📊</div>
+                        <div>
+                            <div class="card-title">业务概览</div>
+                            <div class="card-subtitle">Company Overview</div>
+                        </div>
+                    </div>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <div class="card-stat-num">100+</div>
+                            <div class="card-stat-label">项目案例</div>
+                        </div>
+                        <div class="card-stat">
+                            <div class="card-stat-num">50+</div>
+                            <div class="card-stat-label">技术专利</div>
+                        </div>
+                        <div class="card-stat">
+                            <div class="card-stat-num">30+</div>
+                            <div class="card-stat-label">合作客户</div>
+                        </div>
+                    </div>
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600" alt="科技办公">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="services">
+        <div class="section-header">
+            <p class="section-label">核心能力</p>
+            <h2 class="section-title">专业服务领域</h2>
+            <p class="section-desc">深耕科技行业多年，提供全方位的技术解决方案</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🖥️</div>
+                <h3>软件开发</h3>
+                <p>提供企业级软件定制开发、移动应用开发、Web应用开发等服务，打造高效稳定的系统解决方案。</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3>AI人工智能</h3>
+                <p>机器学习模型开发、自然语言处理、计算机视觉技术研发，赋能企业智能化转型升级。</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">☁️</div>
+                <h3>云服务</h3>
+                <p>云架构设计与部署、云端运维服务、DevOps流程优化，降低IT成本提升效能。</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>智能硬件</h3>
+                <p>物联网设备开发、智能硬件设计、嵌入式系统研发，软硬件一体化解决方案。</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🔒</div>
+                <h3>网络安全</h3>
+                <p>安全评估、渗透测试、安全架构设计，为企业信息安全保驾护航。</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">📈</div>
+                <h3>数据服务</h3>
+                <p>大数据平台建设、数据分析与挖掘、商业智能报表，挖掘数据价值驱动决策。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about-section" id="about">
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=700" alt="科技创新">
+            </div>
+            
+            <div class="about-content">
+                <h2>关于毛头科技</h2>
+                <p>深圳市毛头科技有限公司成立于深圳前海，拥有一支经验丰富、技术过硬的专业团队。我们专注于软件研发、人工智能、物联网等前沿领域，为客户提供从咨询规划到落地实施的一站式技术服务。</p>
+                
+                <div class="about-features">
+                    <div class="about-feature">
+                        <div class="feature-check">✓</div>
+                        <span>专业的技术研发团队，核心成员来自知名科技企业</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-check">✓</div>
+                        <span>丰富的项目经验，覆盖多个行业领域</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-check">✓</div>
+                        <span>完善的质量保障体系，确保项目交付</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-check">✓</div>
+                        <span>持续的售后服务，技术支持有保障</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="feature-check">✓</div>
+                        <span>创新的解决方案，助力企业数字化转型</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section products-section" id="products">
+        <div class="section-header">
+            <p class="section-label">产品中心</p>
+            <h2 class="section-title">精选产品展示</h2>
+            <p class="section-desc">多款自主研发的科技产品，满足不同场景需求</p>
+        </div>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500" alt="数据分析平台">
+                    <span class="product-tag">数据</span>
+                </div>
+                <div class="product-info">
+                    <h3>智能数据分析平台</h3>
+                    <p>可视化数据洞察，实时监控与智能预警</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1488229297570-58520851e68c?w=500" alt="云管理系统">
+                    <span class="product-tag">云端</span>
+                </div>
+                <div class="product-info">
+                    <h3>云端管理系统</h3>
+                    <p>一体化云管平台，简化运维降本增效</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500" alt="智能网关">
+                    <span class="product-tag">硬件</span>
+                </div>
+                <div class="product-info">
+                    <h3>IoT智能网关</h3>
+                    <p>设备互联互通，边缘计算赋能物联网</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500" alt="智能报表">
+                    <span class="product-tag">智能</span>
+                </div>
+                <div class="product-info">
+                    <h3>AI智能报表系统</h3>
+                    <p>自动生成分析报告，AI驱动业务洞察</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">100+</div>
+                <div class="stat-label">完成项目</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">50+</div>
+                <div class="stat-label">技术专利</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">30+</div>
+                <div class="stat-label">合作客户</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">10+</div>
+                <div class="stat-label">行业覆盖</div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-brand">深圳市毛头科技有限公司</div>
+        <p class="footer-text">创新驱动发展，技术引领未来</p>
+        <p class="footer-text" style="margin-top: 8px;">© 2026 版权所有</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.service-card, .product-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.service-card, .product-card, .about-content').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            el.style.transitionDelay = `${index * 0.08}s`;
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
